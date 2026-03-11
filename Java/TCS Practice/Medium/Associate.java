@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Associate {
     private String associateId;
     public String associateName;
@@ -33,5 +35,38 @@ public class Associate {
         this.experienceInYears = exp;
         this.associateName = name;
         this.associateId = id;
+    }
+    public static List<String>associateForgiventechnology(Associate[]as,String tech){
+        List<String> ans = new ArrayList<>();
+        int n = as.length;
+        for (int i = 0;i < n;i++){
+            if (as[i].Technology.equals(tech) && as[i].experienceInYears % 5 == 0){
+                ans.add(as[i].associateId);
+            }
+        }
+        return ans;
+    }
+    public static void main(String[] args) {
+        Associate[] as = new Associate[5];
+        Scanner sc = new Scanner(System.in);
+        for (int i = 0;i < 5;i++){
+            String name;
+            String Id;
+            int yrs;
+            String skill;
+            name = sc.nextLine();
+            Id = sc.nextLine();
+            skill = sc.nextLine();
+            yrs = sc.nextInt();
+            sc.nextLine();
+            as[i] = new Associate(name, Id, yrs, skill);
+        }
+        String tech = sc.nextLine();
+        List<String> ans = associateForgiventechnology(as, tech);
+        ans.sort(null);
+        for (int i = 0;i < ans.size();i++){
+            System.out.println(ans.get(i));
+        }
+        sc.close();
     }
 }
